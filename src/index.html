@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Board</title>
+</head>
+
+<body class="root">
+  <div class="page">
+    <section class="board">
+      <nav class="board__nav">
+        <ul class="board__nav-list">
+          <ol class="board__nav-list-item">
+            <button class="board__nav-btn">Left</button>
+          </ol>
+          <ol class="board__nav-list-item">
+            <button class="board__nav-btn">Right</button>
+          </ol>
+        </ul>
+      </nav>
+
+      <div class="board__date-row">
+        <div class="board__date-first-item"></div>
+        <ul class="board__date-list"></ul>
+      </div>
+    </section>
+    <section class="backlog"></section>
+  </div>
+
+  <template id="date__card-template" class="date__card-template">
+    <ol class="date__card-item">
+    </ol>
+  </template>
+</body>
+
+</html>
