@@ -25,12 +25,29 @@
         <div class="board__date-first-item"></div>
         <ul class="board__date-list"></ul>
       </div>
+
+      <div class="board__tasks-wrapper">
+        <ul class="board__tasks-rows">
+        </ul>
+      </div>
     </section>
     <section class="backlog"></section>
   </div>
 
   <template id="date__card-template" class="date__card-template">
     <ol class="date__card-item">
+    </ol>
+  </template>
+
+  <template id="board__tasks-row-template" class="board__tasks-row-template">
+    <ol class="board__tasks-row-item">
+      <div class="board__tasks-row-header"></div>
+      <ul class="board__tasks-cards-list"></ul>
+    </ol>
+  </template>
+
+  <template id="board__tasks-card-template" class="board__tasks-card-template">
+    <ol class="board__tasks-card-item">
     </ol>
   </template>
 </body>

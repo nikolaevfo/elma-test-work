@@ -1,4 +1,4 @@
-export default class Section {
+export default class DateSection {
   constructor(renderer, containerSelector) {
     this._renderer = renderer;
     this._containerSelector = containerSelector;
@@ -9,21 +9,7 @@ export default class Section {
       let newDate = new Date();
       newDate.setDate(day.getDate() + i);
 
-      let newDay;
-      if (newDate.getDate() <= 9) {
-        newDay = "0" + newDate.getDate();
-      } else {
-        newDay = newDate.getDate();
-      }
-
-      let newMonth;
-      if (newDate.getMonth() + 1 <= 9) {
-        newMonth = "0" + (newDate.getMonth() + 1);
-      } else {
-        newMonth = newDate.getMonth() + 1;
-      }
-
-      this._renderer(`${newDay}.${newMonth}`);
+      this._renderer(newDate.toLocaleDateString().slice(0, -5));
     }
   }
 

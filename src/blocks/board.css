@@ -6,6 +6,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 10px;
+  overflow: hidden;
 }
 .board__nav{
   width: 100%;
@@ -24,8 +25,12 @@
   padding: 0;
 }
 .board__nav-btn {
+  padding: 5px 10px;
+  background: #5cb85c;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
   margin: 0;
-  padding: 0;
 }
 
 .board__date-row {
@@ -35,17 +40,58 @@
   width: 100%;
 }
 .board__date-first-item {
-  width: 200px;
-  background: green;
+  width: 100px;
 }
 .board__date-list {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+}
+.date__card-item {
+  margin: 0;
+  padding: 5px 0;
+  border: 1px solid #dddddd;
+  text-align: center;
+}
+
+.board__tasks-wrapper {
+  width: 100%;
+}
+.board__tasks-rows {
+  margin: 0;
+  padding: 0;
+}
+.board__tasks-row-item {
   display: flex;
-  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+.board__tasks-row-header {
+  width: 100px;
+  padding: 10px 0;
+  background: #5cb85c;
+  color: #fff;
+  border: 1px solid #dddddd;
+  text-align: center;
+  flex-shrink: 0;
+}
+.board__tasks-cards-list {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
   flex-grow: 1;
   margin: 0;
   padding: 0;
 }
-.date__card-item {
+.board__tasks-card-item {
+  display: flex;
+  flex-direction: column;
+
   margin: 0;
   padding: 5px 10px;
+  border: 1px solid #dddddd;
+  flex-grow: 1;
+  text-align: center;
+  overflow: hidden;
 }
