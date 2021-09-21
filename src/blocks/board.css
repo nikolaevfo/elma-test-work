@@ -64,17 +64,21 @@
   padding: 0;
 }
 .board__tasks-row-item {
+  min-height: 100px;
   display: flex;
   margin: 0;
   padding: 0;
 }
 .board__tasks-row-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   width: 100px;
   padding: 10px 0;
   background: #5cb85c;
   color: #fff;
   border: 1px solid #dddddd;
-  text-align: center;
   flex-shrink: 0;
 }
 .board__tasks-cards-list {
@@ -84,14 +88,45 @@
   margin: 0;
   padding: 0;
 }
-.board__tasks-card-item {
+.board__tasks-user-list {
   display: flex;
-  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch;
 
   margin: 0;
-  padding: 5px 10px;
+  padding: 0;
   border: 1px solid #dddddd;
   flex-grow: 1;
   text-align: center;
   overflow: hidden;
+}
+
+.board__tasks-card-item-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+}
+
+.board__tasks-user-list-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  background: #5cb85c;
+  color: #fff;
+  border-bottom: 1px solid #dddddd;
+  
+  font-size: 10px; 
+}
+
+.board__tasks-user-list-item:last-child { 
+  border-bottom: none;
 }

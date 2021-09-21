@@ -27,13 +27,22 @@ export default class UsersRows {
   _getCardTemplate() {
     const element = document
       .querySelector(this._cardSelector)
-      .content.querySelector(".board__tasks-card-item")
+      .content.querySelector(".board__tasks-user-list")
       .cloneNode(true);
 
     return element;
   }
 
-  _generateRow(userData, tasksData, firstDay, quantity) {
+  _getUserTaskTemplate() {
+    const element = document
+      .querySelector(".board__tasks-user-list-item-template")
+      .content.querySelector(".board__tasks-user-list-item")
+      .cloneNode(true);
+
+    return element;
+  }
+
+  _generateRow(userData, thisBoardTasksData, firstDay, quantity) {
     const rowElement = this._getRowTemplate();
     rowElement.id = userData.id;
     const header = rowElement.querySelector(".board__tasks-row-header");
@@ -45,15 +54,21 @@ export default class UsersRows {
 
       let thisCardDate = new Date();
       thisCardDate.setDate(firstDay.getDate() + i);
+      newCard.id = thisCardDate.toLocaleDateString();
 
-      const allDayTasks = tasksData.filter((item) => {
-        const dateStartTask = new Date(item.planStartDate);
-        const dateEndTask = new Date(item.planEndDate);
+      const dayTasks = thisBoardTasksData[i];
 
-        return dateStartTask <= thisCardDate && dateEndTask >= thisCardDate;
+      const thisUserTasks = dayTasks.filter((item) => {
+        return item.executor === userData.id;
       });
 
-      newCard.id = thisCardDate.toLocaleDateString();
+      if (thisUserTasks.length > 0) {
+        for (let i = 0; i <= thisUserTasks.length; i++) {
+          const newUserTask = this._getUserTaskTemplate();
+          newUserTask.textContent = thisUserTasks[0].subject;
+          newCard.querySelector(".board__tasks-card-item-list").append(newUserTask);
+        }
+      }
 
       rowsList.append(newCard);
     }
