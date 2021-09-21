@@ -6,7 +6,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .board__nav{
   width: 100%;
@@ -54,6 +54,7 @@
   padding: 5px 0;
   border: 1px solid #dddddd;
   text-align: center;
+  list-style: none;
 }
 
 .board__tasks-wrapper {
@@ -68,6 +69,7 @@
   display: flex;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 .board__tasks-row-header {
   display: flex;
@@ -80,6 +82,8 @@
   color: #fff;
   border: 1px solid #dddddd;
   flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 500;
 }
 .board__tasks-cards-list {
   display: grid;
@@ -98,7 +102,8 @@
   border: 1px solid #dddddd;
   flex-grow: 1;
   text-align: center;
-  overflow: hidden;
+  /* overflow: hidden; */
+  list-style: none;
 }
 
 .board__tasks-card-item-list {
@@ -115,18 +120,71 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  overflow-wrap: anywhere;
+
+  position: relative;
+  /* overflow: hidden; */
   margin: 0;
-  padding: 0;
+  padding: 5px;
   flex-grow: 1;
   background: #5cb85c;
-  color: #fff;
   border-bottom: 1px solid #dddddd;
-  
-  font-size: 10px; 
+  transition: 0.3s;
 }
 
 .board__tasks-user-list-item:last-child { 
   border-bottom: none;
+}
+
+.board__tasks-user-list-item:hover{
+  cursor: pointer;
+  background: #329832;
+}
+
+.board__tasks-user-list-item-header{
+  font-size: 12px; 
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+
+.board__task-submenu{
+  width: 100px;
+  position: absolute;
+  top: 10%;
+  left: 95%;
+  background: #f7f7f7;
+  border: 1px solid #dddddd;
+  margin: 0;
+  padding: 0;
+  z-index: 15;
+
+  display: fles;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+.board__tasks-user-list-item:hover .board__task-submenu{
+  opacity: 1;
+  visibility: visible;
+}
+
+.board__task-submenu-item {
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  font-size: 9px; 
+}
+.board__task-submenu-item-description {
+}
+.board__task-submenu-item-creationDate {
+}
+.board__task-submenu-item-planStartDate {
+}
+.board__task-submenu-item-planEndDate {
+}
+.board__task-submenu-item-endDate {
 }

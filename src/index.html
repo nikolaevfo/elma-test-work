@@ -35,28 +35,36 @@
   </div>
 
   <template id="date__card-template" class="date__card-template">
-    <ol class="date__card-item">
-    </ol>
+    <li class="date__card-item">
+    </li>
   </template>
 
   <template id="board__tasks-row-template" class="board__tasks-row-template">
-    <ol class="board__tasks-row-item">
+    <li class="board__tasks-row-item">
       <div class="board__tasks-row-header"></div>
       <ul class="board__tasks-cards-list"></ul>
-    </ol>
+    </li>
   </template>
 
   <!-- карточки для пользователя внутри одной строки -->
   <template id="board__tasks-card-template" class="board__tasks-card-template">
-    <ol class="board__tasks-user-list">
+    <li class="board__tasks-user-list">
       <ul class="board__tasks-card-item-list"></ul>
-    </ol>
+    </li>
   </template>
 
   <!-- карточки для пользователя внутри одного дня -->
   <template id="board__tasks-user-list-item-template" class="board__tasks-user-list-item-template">
-    <ol class="board__tasks-user-list-item">
-    </ol>
+    <li class="board__tasks-user-list-item">
+      <h3 class="board__tasks-user-list-item-header"></h3>
+      <ul class="board__task-submenu">
+        <li class="board__task-submenu-item board__task-submenu-item-description"></li>
+        <li class="board__task-submenu-item">Дата создания: <span class="board__task-submenu-item-creationDate"></span></li>
+        <li class="board__task-submenu-item ">Планируемая дата начала: <span class="board__task-submenu-item-planStartDate"></span></li>
+        <li class="board__task-submenu-item ">Планируемая дата окончания: <span class="board__task-submenu-item-planEndDate"></span></li>
+        <li class="board__task-submenu-item ">Дата окончания: <span class="board__task-submenu-item-endDate"></span></li>
+      </ul>
+    </li>
   </template>
 </body>
 

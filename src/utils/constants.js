@@ -10,7 +10,7 @@ export const tasksData = [
   {
     id: "bd83b1e9-ca06-4249-8fc7-7e5cca6428fe",
     subject: "Анализ",
-    description: "",
+    description: "Lorem",
     creationAuthor: 1,
     executor: 1,
     creationDate: "2021-09-20",
@@ -23,7 +23,7 @@ export const tasksData = [
   {
     id: "8ba3ba2d-2c6c-4bba-8952-14a973c1648e",
     subject: "Планирование",
-    description: "",
+    description: "Lorem",
     creationAuthor: 1,
     executor: 1,
     creationDate: "2021-09-20",
@@ -36,7 +36,7 @@ export const tasksData = [
   {
     id: "eea75b18-0cc6-4cc4-a75c-64348ce76022",
     subject: "Проектирование",
-    description: "",
+    description: "Lorem",
     creationAuthor: 1,
     executor: 2,
     creationDate: "2021-09-20",
@@ -49,7 +49,7 @@ export const tasksData = [
   {
     id: "3e2e9a19-c115-4326-9f6b-04223815c854",
     subject: "Разработка",
-    description: "",
+    description: "Lorem",
     creationAuthor: 1,
     executor: 3,
     creationDate: "2021-09-20",
@@ -62,7 +62,7 @@ export const tasksData = [
   {
     id: "511e3770-e2f4-47c8-b9af-de91f20476f5",
     subject: "Тестирование",
-    description: "",
+    description: "Lorem",
     creationAuthor: 1,
     executor: null,
     creationDate: "2021-09-20",
@@ -75,7 +75,7 @@ export const tasksData = [
   {
     id: "511e3770-e2f4-47c8-b9af-de91f20476f4",
     subject: "Тестирование",
-    description: "",
+    description: "Lorem",
     creationAuthor: 1,
     executor: null,
     creationDate: "2021-09-20",

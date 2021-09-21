@@ -63,9 +63,21 @@ export default class UsersRows {
       });
 
       if (thisUserTasks.length > 0) {
-        for (let i = 0; i <= thisUserTasks.length; i++) {
+        for (let j = 0; j < thisUserTasks.length; j++) {
           const newUserTask = this._getUserTaskTemplate();
-          newUserTask.textContent = thisUserTasks[0].subject;
+          newUserTask.querySelector(".board__tasks-user-list-item-header").textContent =
+            thisUserTasks[j].subject;
+          newUserTask.querySelector(".board__task-submenu-item-description").textContent =
+            thisUserTasks[j].description;
+          newUserTask.querySelector(".board__task-submenu-item-creationDate").textContent =
+            thisUserTasks[j].creationDate;
+          newUserTask.querySelector(".board__task-submenu-item-planStartDate").textContent =
+            thisUserTasks[j].planStartDate;
+          newUserTask.querySelector(".board__task-submenu-item-planEndDate").textContent =
+            thisUserTasks[j].planEndDate;
+          newUserTask.querySelector(".board__task-submenu-item-endDate").textContent =
+            thisUserTasks[j].endDate;
+
           newCard.querySelector(".board__tasks-card-item-list").append(newUserTask);
         }
       }
