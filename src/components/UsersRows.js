@@ -56,8 +56,9 @@ export default class UsersRows {
     for (let i = 0; i < quantity; i++) {
       const newCard = this._getCardTemplate();
 
-      let thisCardDate = new Date();
-      thisCardDate.setDate(firstDay.getDate() + i);
+      const thisCardDate = new Date(firstDay);
+      thisCardDate.setDate(thisCardDate.getDate() + i);
+
       newCard.id = thisCardDate.toLocaleDateString();
 
       const dayTasks = thisBoardTasksData[i];

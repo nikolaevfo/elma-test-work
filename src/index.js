@@ -24,14 +24,15 @@ let thisWeekTasksData;
 function toGetThisWeekTasksData(firstDay) {
   thisWeekTasksData = [];
   for (let i = 0; i < quantityDays; i++) {
-    let thisDayDate = new Date();
-    thisDayDate.setDate(firstDay.getDate() + i);
+    const thisDayDate = new Date(firstDay);
+    thisDayDate.setDate(thisDayDate.getDate() + i);
 
     const thisDayTasks = tasksData.filter((item) => {
       const dateStartTask = new Date(item.planStartDate);
       const dateEndTask = new Date(item.planEndDate);
-      const dateEndTaskIncrease = new Date();
-      dateEndTaskIncrease.setDate(dateEndTask.getDate() + 1);
+
+      const dateEndTaskIncrease = new Date(dateEndTask);
+      dateEndTaskIncrease.setDate(dateEndTaskIncrease.getDate() + 1);
 
       return dateStartTask <= thisDayDate && dateEndTaskIncrease >= thisDayDate;
     });

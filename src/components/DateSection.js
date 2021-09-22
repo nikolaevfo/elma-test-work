@@ -6,13 +6,10 @@ export default class DateSection extends Section {
     this._renderer = renderer;
   }
 
-  renderItems(day, quantity) {
-    const year = day.getFullYear();
-    const month = day.getMonth();
-    const dayData = day.getDate();
-    const newDate = new Date(year, month, dayData);
+  renderItems(firstDay, quantity) {
     for (let i = 0; i < quantity; i++) {
-      newDate.setDate(day.getDate() + i);
+      const newDate = new Date(firstDay);
+      newDate.setDate(newDate.getDate() + i);
 
       this._renderer(newDate.toLocaleDateString().slice(0, -5));
     }
