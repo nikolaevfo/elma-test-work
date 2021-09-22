@@ -215,7 +215,7 @@
     font-size: 11px;
   }
 }
-@media (max-width:1365px){
+@media (max-width:1340px){
   .board__date-list{
     grid-template-columns: repeat(7, 1fr);
   }

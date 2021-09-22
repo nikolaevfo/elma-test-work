@@ -6,4 +6,8 @@ export default class Section {
   addItem(element) {
     document.querySelector(this._containerSelector).append(element);
   }
+
+  clearItems() {
+    document.querySelector(this._containerSelector).textContent = "";
+  }
 }

@@ -15,6 +15,10 @@ export default class UsersRows {
     document.querySelector(this._containerSelector).append(element);
   }
 
+  clearItems() {
+    document.querySelector(this._containerSelector).textContent = "";
+  }
+
   _getRowTemplate() {
     const element = document
       .querySelector(this._rowSelector)
@@ -75,8 +79,6 @@ export default class UsersRows {
             thisUserTasks[j].planStartDate;
           newUserTask.querySelector(".board__task-submenu-item-planEndDate").textContent =
             thisUserTasks[j].planEndDate;
-          newUserTask.querySelector(".board__task-submenu-item-endDate").textContent =
-            thisUserTasks[j].endDate;
 
           newCard.querySelector(".board__tasks-card-item-list").append(newUserTask);
         }

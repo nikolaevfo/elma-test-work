@@ -7,8 +7,11 @@ export default class DateSection extends Section {
   }
 
   renderItems(day, quantity) {
+    const year = day.getFullYear();
+    const month = day.getMonth();
+    const dayData = day.getDate();
+    const newDate = new Date(year, month, dayData);
     for (let i = 0; i < quantity; i++) {
-      let newDate = new Date();
       newDate.setDate(day.getDate() + i);
 
       this._renderer(newDate.toLocaleDateString().slice(0, -5));
