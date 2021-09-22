@@ -7,6 +7,7 @@
   justify-content: flex-start;
   align-items: center;
   padding: 10px;
+  outline: 1px solid #dddddd;
 }
 
 .board__nav{
@@ -62,16 +63,13 @@
   flex-grow: 1;
 }
 
-.board__date-list_short {
-  grid-template-columns: repeat(9, 1fr);
-}
-
 .date__card-item {
   margin: 0;
   padding: 5px 0;
   border: 1px solid #dddddd;
   text-align: center;
   list-style: none;
+  font-size: 16px;
 }
 
 .board__tasks-wrapper {
@@ -97,13 +95,15 @@
   align-items: center;
   text-align: center;
   width: 100px;
-  padding: 10px 0;
+  padding: 10px 5px;
   background: #5cb85c;
   color: #fff;
   border: 1px solid #dddddd;
   flex-shrink: 0;
   font-size: 16px;
   font-weight: 500;
+  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .board__tasks-cards-list {
@@ -112,9 +112,6 @@
   flex-grow: 1;
   margin: 0;
   padding: 0;
-}
-.board__tasks-cards-list_short {
-  grid-template-columns: repeat(9, 1fr);
 }
 
 .board__tasks-user-list {
@@ -201,6 +198,7 @@
   list-style: none;
   font-size: 12px; 
   text-align: left;
+  overflow-wrap: anywhere;
 }
 
 @media (max-width:1919px){
@@ -217,6 +215,54 @@
     font-size: 11px;
   }
 }
-@media (max-width:1365px){}
-@media (max-width:767px){}
-@media (max-width:424px){}
+@media (max-width:1365px){
+  .board__date-list{
+    grid-template-columns: repeat(7, 1fr);
+  }
+  .board__tasks-cards-list {
+    grid-template-columns: repeat(7, 1fr);  }
+
+}
+@media (max-width:1024px){
+  .board{
+    width: 100%;
+    flex: 0 0 100%;
+  }
+  .board__task-submenu{
+    width: 100%;
+    top: 90%;
+    left: -20%;
+  }
+}
+@media (max-width:767px){
+  .board__date-first-item {
+    width: 60px;
+  }
+  .date__card-item {
+    font-size: 12px;
+  }
+  .board__tasks-row-header{
+    font-size: 12px;
+    width: 60px;
+  }
+  .board__task-submenu{
+    width: 160%;
+    left: -110%;
+  }
+}
+@media (max-width:424px){
+  .board__date-first-item {
+    width: 50px;
+  }
+  .date__card-item {
+    font-size: 10px;
+  }
+  .board__tasks-row-header{
+    font-size: 12px;
+    width: 50px;
+  }
+  .board__task-submenu{
+    width: 190%;
+    left: -100%;
+  }
+}

@@ -1,5 +1,11 @@
 export const usersData = [
-  { id: 1, username: "user1", surname: "Петров", firstName: "Иван", secondName: "" },
+  {
+    id: 1,
+    username: "user1",
+    surname: "Петров",
+    firstName: "Иван",
+    secondName: "",
+  },
   { id: 2, username: "user2", surname: "Иванов", firstName: "Пётр", secondName: "" },
   { id: 3, username: "user3", surname: "Васильев", firstName: "Артём", secondName: "" },
   { id: 4, username: "user4", surname: "Кузнецов", firstName: "Сергей", secondName: "" },

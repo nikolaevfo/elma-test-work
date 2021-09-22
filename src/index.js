@@ -15,9 +15,9 @@ let firstDayBoard = new Date(date.setDate(mondayDate.getDate() - 3));
 let quantityDays = 14;
 
 // устанавливаем количество колонок
-if (document.documentElement.clientWidth < 1366) {
-  firstDayBoard = new Date(date.setDate(mondayDate.getDate() - 1));
-  quantityDays = 9;
+if (document.documentElement.clientWidth <= 1365) {
+  firstDayBoard = new Date(date.setDate(mondayDate.getDate()));
+  quantityDays = 7;
 }
 
 // массив заданий на текущий период времени по дням
@@ -74,16 +74,7 @@ const backlogTasksList = new BacklogSection((item) => {
 }, ".backlog__tasks-list");
 backlogTasksList.renderItems(tasksWithoutExecutor);
 
-const dateRowColumns = document.querySelector(".board__date-list");
-const boardRowColumns = document.querySelectorAll(".board__tasks-cards-list");
-
-if (document.documentElement.clientWidth < 1366) {
-  dateRowColumns.classList.add("board__date-list_short");
-  boardRowColumns.forEach((item) => {
-    item.classList.add("board__tasks-cards-list_short");
-  });
-}
-
+// перезагрузка страницы при изменении размера экрана
 function handleWindowResize() {
   window.location.reload();
 }
