@@ -46,6 +46,15 @@ export default class UsersRows {
     return element;
   }
 
+  _setEventListeners(item) {
+    item.addEventListener("dragover", (evt) => {
+      evt.preventDefault();
+    });
+    item.addEventListener("drop", (evt) => {
+      console.log(evt.target);
+    });
+  }
+
   _generateRow(userData, thisBoardTasksData, firstDay, quantity) {
     const rowElement = this._getRowTemplate();
     rowElement.id = userData.id;
@@ -60,6 +69,7 @@ export default class UsersRows {
       thisCardDate.setDate(thisCardDate.getDate() + i);
 
       newCard.id = thisCardDate.toLocaleDateString();
+      this._setEventListeners(newCard);
 
       const dayTasks = thisBoardTasksData[i];
 

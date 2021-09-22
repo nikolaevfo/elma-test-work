@@ -47,6 +47,34 @@ const tasksWithoutExecutor = tasksData.filter((item) => {
   return !item.executor;
 });
 
+// фильтрация заданий в backlog ========================================================
+let filteredTasksWithoutExecutor = tasksWithoutExecutor;
+const backlogForm = document.querySelector(".backlog__form");
+const backlogFormInput = document.querySelector(".backlog__search-input");
+
+function handlerBacklogFormSubmit(e) {
+  e.preventDefault();
+  const inputValue = backlogFormInput.value;
+  if (inputValue) {
+    filteredTasksWithoutExecutor = tasksWithoutExecutor.filter((item) => {
+      const valuesArray = Object.values(item);
+      let result = false;
+      valuesArray.forEach((value) => {
+        if (value && value.toString().includes(inputValue)) {
+          result = true;
+        }
+      });
+      return result;
+    });
+  } else {
+    filteredTasksWithoutExecutor = tasksWithoutExecutor;
+  }
+
+  clearAllItems();
+  renderAllItems();
+}
+
+backlogForm.addEventListener("submit", handlerBacklogFormSubmit);
 // Dates ==============================================================================
 const createDateCard = (data) => {
   const dateCard = new DateCard(data, ".date__card-template");
@@ -73,24 +101,25 @@ const createBacklogCard = (item) => {
 const backlogTasksList = new BacklogSection((item) => {
   backlogTasksList.addItem(createBacklogCard(item));
 }, ".backlog__tasks-list");
-backlogTasksList.renderItems(tasksWithoutExecutor);
 
 // перезагрузка страницы при изменении размера экрана ==========================================
-function handleWindowResize() {
-  window.location.reload();
-}
-window.addEventListener("resize", handleWindowResize);
+// function handleWindowResize() {
+//   window.location.reload();
+// }
+// window.addEventListener("resize", handleWindowResize);
 
 // renderAllItems clearAllItems =================================================================
 function renderAllItems() {
   dateCardsList.renderItems(firstDayBoard, quantityDays);
   usersRows.renderRowsItems(usersData, thisWeekTasksData, firstDayBoard, quantityDays);
+  backlogTasksList.renderItems(filteredTasksWithoutExecutor);
 }
 renderAllItems();
 
 function clearAllItems() {
   dateCardsList.clearItems();
   usersRows.clearItems();
+  backlogTasksList.clearItems();
 }
 
 // прокручивание недель ========================================================================

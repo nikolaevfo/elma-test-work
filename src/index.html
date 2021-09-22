@@ -33,10 +33,10 @@
     </section>
     <section class="backlog">
       <h2 class="backlog__title">Backlog</h2>
-      <div class="backlog__search-row">
+      <form class="backlog__search-row backlog__form">
         <input type="text" class="backlog__search-input" placeholder="Поиск" size="10">
-        <button class="backlog__search-button" type="button"></button>
-      </div>
+        <button class="backlog__search-button" type="submit"></button>
+      </form>
       <ul class="backlog__tasks-list"></ul>
     </section>
   </div>
@@ -77,7 +77,7 @@
 
   <!-- карточки задания на backlog -->
   <template id="backlog__tasks-item-template" class="backlog__tasks-item-template">
-    <li class="backlog__tasks-item">
+    <li class="backlog__tasks-item" draggable="true">
       <p class="backlog__tasks-item-name"></p>
       <p class="backlog__tasks-item-description"></p>
     </li>
