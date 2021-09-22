@@ -6,7 +6,6 @@
   justify-content: flex-start;
   align-items: center;
   padding: 10px;
-  /* overflow: hidden; */
 }
 .board__nav{
   width: 100%;
@@ -102,7 +101,6 @@
   border: 1px solid #dddddd;
   flex-grow: 1;
   text-align: center;
-  /* overflow: hidden; */
   list-style: none;
 }
 
@@ -122,7 +120,6 @@
   align-items: center;
 
   position: relative;
-  /* overflow: hidden; */
   margin: 0;
   padding: 5px;
   flex-grow: 1;
@@ -152,8 +149,8 @@
 .board__task-submenu{
   width: 100px;
   position: absolute;
-  top: 10%;
-  left: 95%;
+  top: 20%;
+  left: 90%;
   background: #f7f7f7;
   border: 1px solid #dddddd;
   margin: 0;
@@ -188,3 +185,4 @@
 }
 .board__task-submenu-item-endDate {
 }
+

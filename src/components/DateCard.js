@@ -16,7 +16,7 @@ export default class DateCard {
 
   generateCard() {
     this._element.textContent = this._date;
-    // this._element.id = this._id;
+
     return this._element;
   }
 }

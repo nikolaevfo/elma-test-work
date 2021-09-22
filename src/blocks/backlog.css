@@ -1,4 +1,94 @@
 .backlog{
   background: #d3d3d3;
   flex: 0 0 20%;
+  padding: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.backlog__title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+
+  margin: 0;
+  padding: 10px 0;
+}
+
+.backlog__search-row {
+  padding: 0;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.backlog__search-input {
+  margin: 0;
+  padding: 5px;
+  outline: none;
+  border: none;
+  font-size: 14px;
+  flex-grow: 1;
+   border-right: 1px solid #dddddd;
+}
+
+.backlog__search-input::placeholder{
+  font-size: 14px;
+  font-style: italic;
+}
+
+.backlog__search-button {
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  width: 26px;
+  height: 26px;
+  background: #fff url('../images/lupa.svg') center no-repeat;
+  transition: 0.3s;
+}
+
+.backlog__search-button:hover{
+  cursor: pointer;
+  background: #f2f2f2 url('../images/lupa.svg') center no-repeat;
+}
+
+.backlog__tasks-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.backlog__tasks-item {
+  background: #eeeeee;
+  padding: 5px;
+  font-size: 14px;
+  margin-bottom: 3px;
+  border-radius: 4px;
+  /* transition: 0.3s; */
+}
+
+.backlog__tasks-item:hover{
+  cursor: pointer;
+  border: 1px solid #b2b2b2;
+  padding: 4px;
+}
+
+.backlog__tasks-item-name {
+  color: #678496;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+.backlog__tasks-item-description {
+  margin: 0;
+  padding: 0;
 }

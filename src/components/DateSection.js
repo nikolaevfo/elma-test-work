@@ -1,7 +1,9 @@
-export default class DateSection {
+import Section from "./Section";
+
+export default class DateSection extends Section {
   constructor(renderer, containerSelector) {
+    super(containerSelector);
     this._renderer = renderer;
-    this._containerSelector = containerSelector;
   }
 
   renderItems(day, quantity) {
@@ -11,9 +13,5 @@ export default class DateSection {
 
       this._renderer(newDate.toLocaleDateString().slice(0, -5));
     }
-  }
-
-  addItem(element) {
-    document.querySelector(this._containerSelector).append(element);
   }
 }

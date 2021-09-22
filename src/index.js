@@ -1,3 +1,5 @@
+import BacklogCard from "./components/BacklogCard";
+import BacklogSection from "./components/BacklogSection";
 import DateCard from "./components/DateCard";
 import DateSection from "./components/DateSection";
 import UsersRows from "./components/UsersRows";
@@ -12,10 +14,8 @@ const mondayDate = new Date(date.setDate(date.getDate() - date.getDay()));
 const firstDayBoard = new Date(date.setDate(mondayDate.getDate() - 3));
 const quantityDays = 14;
 
-// const lastDayBoard = new Date(date.setDate(mondayDate.getDate() + 11));
-// console.log(lastDayBoard);
-
-const thisBoardTasksData = [];
+// массив заданий на текущий период времени по дням
+const thisWeekTasksData = [];
 for (let i = 0; i < quantityDays; i++) {
   let thisDayDate = new Date();
   thisDayDate.setDate(firstDayBoard.getDate() + i);
@@ -29,8 +29,13 @@ for (let i = 0; i < quantityDays; i++) {
     return dateStartTask <= thisDayDate && dateEndTaskIncrease >= thisDayDate;
   });
 
-  thisBoardTasksData.push(thisDayTasks);
+  thisWeekTasksData.push(thisDayTasks);
 }
+
+// массив всех заданий без исполнителя
+const tasksWithoutExecutor = tasksData.filter((item) => {
+  return !item.executor;
+});
 
 // Dates
 const createDateCard = (data) => {
@@ -50,4 +55,15 @@ const usersRows = new UsersRows(
   ".board__tasks-row-template",
   ".board__tasks-card-template",
 );
-usersRows.renderRowsItems(usersData, thisBoardTasksData, firstDayBoard, quantityDays);
+usersRows.renderRowsItems(usersData, thisWeekTasksData, firstDayBoard, quantityDays);
+
+// backlog tasks
+const createBacklogCard = (item) => {
+  const card = new BacklogCard(item, usersData, ".backlog__tasks-item-template");
+  return card.generateCard();
+};
+
+const backlogTasksList = new BacklogSection((item) => {
+  backlogTasksList.addItem(createBacklogCard(item));
+}, ".backlog__tasks-list");
+backlogTasksList.renderItems(tasksWithoutExecutor);

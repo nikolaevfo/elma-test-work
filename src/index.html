@@ -31,14 +31,23 @@
         </ul>
       </div>
     </section>
-    <section class="backlog"></section>
+    <section class="backlog">
+      <h2 class="backlog__title">Backlog</h2>
+      <div class="backlog__search-row">
+        <input type="text" class="backlog__search-input" placeholder="Поиск">
+        <button class="backlog__search-button" type="button"></button>
+      </div>
+      <ul class="backlog__tasks-list"></ul>
+    </section>
   </div>
 
+  <!-- карточка даты календаря -->
   <template id="date__card-template" class="date__card-template">
     <li class="date__card-item">
     </li>
   </template>
 
+  <!-- строка пользователя -->
   <template id="board__tasks-row-template" class="board__tasks-row-template">
     <li class="board__tasks-row-item">
       <div class="board__tasks-row-header"></div>
@@ -64,6 +73,14 @@
         <li class="board__task-submenu-item ">Планируемая дата окончания: <span class="board__task-submenu-item-planEndDate"></span></li>
         <li class="board__task-submenu-item ">Дата окончания: <span class="board__task-submenu-item-endDate"></span></li>
       </ul>
+    </li>
+  </template>
+
+  <!-- карточки задания на backlog -->
+  <template id="backlog__tasks-item-template" class="backlog__tasks-item-template">
+    <li class="backlog__tasks-item">
+      <p class="backlog__tasks-item-name"></p>
+      <p class="backlog__tasks-item-description"></p>
     </li>
   </template>
 </body>
