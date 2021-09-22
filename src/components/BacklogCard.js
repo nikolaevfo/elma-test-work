@@ -20,7 +20,7 @@ export default class BacklogCard {
     const author = this._users.find((item) => {
       return item.id === this._task.creationAuthor;
     });
-    console.log(author);
+
     this._element.querySelector(".backlog__tasks-item-name").textContent =
       author.firstName + " " + author.surname;
     this._element.querySelector(".backlog__tasks-item-description").textContent =

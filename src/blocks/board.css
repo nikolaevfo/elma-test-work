@@ -1,4 +1,5 @@
 .board{
+  width: 1000px;
   background: #fff;
   flex: 0 0 80%;
   display: flex;
@@ -7,10 +8,12 @@
   align-items: center;
   padding: 10px;
 }
+
 .board__nav{
   width: 100%;
   margin-bottom: 10px;
 }
+
 .board__nav-list {
   width: 100%;
   display: flex;
@@ -19,10 +22,12 @@
   margin: 0;
   padding: 0;
 }
+
 .board__nav-list-item {
   margin: 0;
   padding: 0;
 }
+
 .board__nav-btn {
   padding: 5px 10px;
   background: #5cb85c;
@@ -30,6 +35,12 @@
   border: none;
   border-radius: 3px;
   margin: 0;
+  transition: 0.3s;
+}
+
+.board__nav-btn:hover{
+  cursor: pointer;
+  background: #329832;
 }
 
 .board__date-row {
@@ -38,9 +49,11 @@
   padding: 0;
   width: 100%;
 }
+
 .board__date-first-item {
   width: 100px;
 }
+
 .board__date-list {
   display: grid;
   grid-template-columns: repeat(14, 1fr);
@@ -48,6 +61,11 @@
   padding: 0;
   flex-grow: 1;
 }
+
+.board__date-list_short {
+  grid-template-columns: repeat(9, 1fr);
+}
+
 .date__card-item {
   margin: 0;
   padding: 5px 0;
@@ -59,17 +77,20 @@
 .board__tasks-wrapper {
   width: 100%;
 }
+
 .board__tasks-rows {
   margin: 0;
   padding: 0;
 }
+
 .board__tasks-row-item {
-  min-height: 100px;
+  min-height: 130px;
   display: flex;
   margin: 0;
   padding: 0;
   list-style: none;
 }
+
 .board__tasks-row-header {
   display: flex;
   justify-content: center;
@@ -84,6 +105,7 @@
   font-size: 16px;
   font-weight: 500;
 }
+
 .board__tasks-cards-list {
   display: grid;
   grid-template-columns: repeat(14, 1fr);
@@ -91,6 +113,10 @@
   margin: 0;
   padding: 0;
 }
+.board__tasks-cards-list_short {
+  grid-template-columns: repeat(9, 1fr);
+}
+
 .board__tasks-user-list {
   display: flex;
   justify-content: stretch;
@@ -138,7 +164,7 @@
 }
 
 .board__tasks-user-list-item-header{
-  font-size: 12px; 
+  font-size: 14px; 
   font-weight: normal;
   margin: 0;
   padding: 0;
@@ -147,7 +173,7 @@
 }
 
 .board__task-submenu{
-  width: 100px;
+  width: 200px;
   position: absolute;
   top: 20%;
   left: 90%;
@@ -173,16 +199,24 @@
   margin: 0;
   padding: 5px;
   list-style: none;
-  font-size: 9px; 
-}
-.board__task-submenu-item-description {
-}
-.board__task-submenu-item-creationDate {
-}
-.board__task-submenu-item-planStartDate {
-}
-.board__task-submenu-item-planEndDate {
-}
-.board__task-submenu-item-endDate {
+  font-size: 12px; 
+  text-align: left;
 }
 
+@media (max-width:1919px){
+  .board__tasks-row-item {
+    min-height: 100px;
+  }
+  .board__tasks-user-list-item-header{
+    font-size: 12px;
+  }
+  .board__task-submenu{
+    width: 170px;
+  }
+  .board__task-submenu-item {
+    font-size: 11px;
+  }
+}
+@media (max-width:1365px){}
+@media (max-width:767px){}
+@media (max-width:424px){}

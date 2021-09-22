@@ -11,8 +11,14 @@ import { tasksData } from "./utils/constants";
 
 const date = new Date();
 const mondayDate = new Date(date.setDate(date.getDate() - date.getDay()));
-const firstDayBoard = new Date(date.setDate(mondayDate.getDate() - 3));
-const quantityDays = 14;
+let firstDayBoard = new Date(date.setDate(mondayDate.getDate() - 3));
+let quantityDays = 14;
+
+// устанавливаем количество колонок
+if (document.documentElement.clientWidth < 1366) {
+  firstDayBoard = new Date(date.setDate(mondayDate.getDate() - 1));
+  quantityDays = 9;
+}
 
 // массив заданий на текущий период времени по дням
 const thisWeekTasksData = [];
@@ -67,3 +73,18 @@ const backlogTasksList = new BacklogSection((item) => {
   backlogTasksList.addItem(createBacklogCard(item));
 }, ".backlog__tasks-list");
 backlogTasksList.renderItems(tasksWithoutExecutor);
+
+const dateRowColumns = document.querySelector(".board__date-list");
+const boardRowColumns = document.querySelectorAll(".board__tasks-cards-list");
+
+if (document.documentElement.clientWidth < 1366) {
+  dateRowColumns.classList.add("board__date-list_short");
+  boardRowColumns.forEach((item) => {
+    item.classList.add("board__tasks-cards-list_short");
+  });
+}
+
+function handleWindowResize() {
+  window.location.reload();
+}
+window.addEventListener("resize", handleWindowResize);
