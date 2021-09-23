@@ -15,15 +15,15 @@ export default class BacklogCard {
     return cardElement;
   }
 
-  _setEventListeners() {
+  _setEventListeners(onDragStartHandler) {
     this._element.addEventListener("dragstart", (evt) => {
-      console.log(evt.target);
+      onDragStartHandler(evt);
     });
   }
 
-  generateCard() {
+  generateCard(onDragStartHandler) {
     this._element.id = this._task.id;
-    this._setEventListeners();
+    this._setEventListeners(onDragStartHandler);
     const author = this._users.find((item) => {
       return item.id === this._task.creationAuthor;
     });

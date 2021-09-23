@@ -91,6 +91,19 @@ export const tasksData = [
     status: 1,
     order: 1,
   },
+  {
+    id: "511e3770-e2f4-47c8-b9af-de91f20476f8",
+    subject: "Тестирование",
+    description: "Тестирование проекта №100",
+    creationAuthor: 1,
+    executor: null,
+    creationDate: "2021-09-20",
+    planStartDate: "2021-09-24",
+    planEndDate: "2021-09-27",
+    endDate: "2021-09-20",
+    status: 1,
+    order: 1,
+  },
 ];
 
 // export const openPopupProfileBtn = document.querySelector('.profile__edit-button');

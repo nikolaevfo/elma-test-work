@@ -43,20 +43,34 @@ function toGetThisWeekTasksData(firstDay) {
 toGetThisWeekTasksData(firstDayBoard);
 
 // массив всех заданий без исполнителя =================================================
-const tasksWithoutExecutor = tasksData.filter((item) => {
-  return !item.executor;
-});
+let tasksWithoutExecutor;
+function toGetTasksWithoutExecutor() {
+  tasksWithoutExecutor = tasksData.filter((item) => {
+    return !item.executor;
+  });
+}
 
 // фильтрация заданий в backlog ========================================================
-let filteredTasksWithoutExecutor = tasksWithoutExecutor;
+let renderedTasksWithoutExecutor;
+function toGetRenderedTasksWithoutExecutor() {
+  toGetTasksWithoutExecutor();
+  renderedTasksWithoutExecutor = tasksWithoutExecutor;
+}
+toGetRenderedTasksWithoutExecutor();
+
 const backlogForm = document.querySelector(".backlog__form");
 const backlogFormInput = document.querySelector(".backlog__search-input");
 
-function handlerBacklogFormSubmit(e) {
-  e.preventDefault();
-  const inputValue = backlogFormInput.value;
+function clearBacklogItems() {
+  backlogTasksList.clearItems();
+}
+function renderBacklogItems() {
+  backlogTasksList.renderItems(renderedTasksWithoutExecutor);
+}
+
+function filteringBacklogTasks(inputValue) {
   if (inputValue) {
-    filteredTasksWithoutExecutor = tasksWithoutExecutor.filter((item) => {
+    renderedTasksWithoutExecutor = tasksWithoutExecutor.filter((item) => {
       const valuesArray = Object.values(item);
       let result = false;
       valuesArray.forEach((value) => {
@@ -67,11 +81,18 @@ function handlerBacklogFormSubmit(e) {
       return result;
     });
   } else {
-    filteredTasksWithoutExecutor = tasksWithoutExecutor;
+    renderedTasksWithoutExecutor = tasksWithoutExecutor;
   }
+}
 
-  clearAllItems();
-  renderAllItems();
+function handlerBacklogFormSubmit(e) {
+  e.preventDefault();
+  const inputValue = backlogFormInput.value;
+
+  filteringBacklogTasks(inputValue);
+
+  clearBacklogItems();
+  renderBacklogItems();
 }
 
 backlogForm.addEventListener("submit", handlerBacklogFormSubmit);
@@ -95,7 +116,7 @@ const usersRows = new UsersRows(
 // backlog tasks ==========================================================================
 const createBacklogCard = (item) => {
   const card = new BacklogCard(item, usersData, ".backlog__tasks-item-template");
-  return card.generateCard();
+  return card.generateCard(onDragStartHandler);
 };
 
 const backlogTasksList = new BacklogSection((item) => {
@@ -110,16 +131,29 @@ const backlogTasksList = new BacklogSection((item) => {
 
 // renderAllItems clearAllItems =================================================================
 function renderAllItems() {
+  toGetThisWeekTasksData(firstDayBoard);
+  toGetRenderedTasksWithoutExecutor();
+
+  if (backlogFormInput.value) {
+    filteringBacklogTasks(backlogFormInput.value);
+  }
+
   dateCardsList.renderItems(firstDayBoard, quantityDays);
-  usersRows.renderRowsItems(usersData, thisWeekTasksData, firstDayBoard, quantityDays);
-  backlogTasksList.renderItems(filteredTasksWithoutExecutor);
+  usersRows.renderRowsItems(
+    usersData,
+    thisWeekTasksData,
+    firstDayBoard,
+    quantityDays,
+    onDropHandler,
+  );
+  renderBacklogItems();
 }
 renderAllItems();
 
 function clearAllItems() {
   dateCardsList.clearItems();
   usersRows.clearItems();
-  backlogTasksList.clearItems();
+  clearBacklogItems();
 }
 
 // прокручивание недель ========================================================================
@@ -136,7 +170,6 @@ function onNextWeekClick() {
     quantityDays = 7;
   }
 
-  toGetThisWeekTasksData(firstDayBoard);
   renderAllItems();
 }
 
@@ -156,3 +189,34 @@ function onPreviousWeekClick() {
 
 nextWeekButton.addEventListener("click", onNextWeekClick);
 lastWeekButton.addEventListener("click", onPreviousWeekClick);
+
+// drag and drop ==================================================================================
+let dragTaskId;
+let dropAreaAuthor;
+let dropAreaDate;
+
+function onDragStartHandler(event) {
+  dragTaskId = event.target.id;
+}
+
+function dropTaskHandler(taskId, author, date) {
+  tasksData.map((task) => {
+    if (task.id === taskId) {
+      task.executor = parseInt(author, 10);
+      const dateNewFormat = date.split(".").reverse().join("-");
+      task.planStartDate = dateNewFormat;
+      task.planEndDate = dateNewFormat;
+    }
+  });
+
+  clearAllItems();
+  renderAllItems();
+}
+
+function onDropHandler(event) {
+  const dropItem = event.target;
+  dropAreaDate = dropItem.closest(".board__tasks-user-list").id;
+  dropAreaAuthor = dropItem.closest(".board__tasks-row-item").id;
+
+  dropTaskHandler(dragTaskId, dropAreaAuthor, dropAreaDate);
+}

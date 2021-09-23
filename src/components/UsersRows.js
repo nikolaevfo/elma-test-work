@@ -5,9 +5,9 @@ export default class UsersRows {
     this._cardSelector = cardSelector;
   }
 
-  renderRowsItems(usersData, tasksData, firstDay, quantity) {
+  renderRowsItems(usersData, tasksData, firstDay, quantity, onDropHandler) {
     usersData.forEach((item) => {
-      this._addItem(this._generateRow(item, tasksData, firstDay, quantity));
+      this._addItem(this._generateRow(item, tasksData, firstDay, quantity, onDropHandler));
     });
   }
 
@@ -46,16 +46,16 @@ export default class UsersRows {
     return element;
   }
 
-  _setEventListeners(item) {
+  _setEventListeners(item, onDropHandler) {
     item.addEventListener("dragover", (evt) => {
       evt.preventDefault();
     });
     item.addEventListener("drop", (evt) => {
-      console.log(evt.target);
+      onDropHandler(evt);
     });
   }
 
-  _generateRow(userData, thisBoardTasksData, firstDay, quantity) {
+  _generateRow(userData, thisBoardTasksData, firstDay, quantity, onDropHandler) {
     const rowElement = this._getRowTemplate();
     rowElement.id = userData.id;
     const header = rowElement.querySelector(".board__tasks-row-header");
@@ -69,7 +69,7 @@ export default class UsersRows {
       thisCardDate.setDate(thisCardDate.getDate() + i);
 
       newCard.id = thisCardDate.toLocaleDateString();
-      this._setEventListeners(newCard);
+      this._setEventListeners(newCard, onDropHandler);
 
       const dayTasks = thisBoardTasksData[i];
 
