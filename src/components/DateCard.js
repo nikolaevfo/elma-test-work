@@ -17,6 +17,11 @@ export default class DateCard {
   generateCard() {
     this._element.textContent = this._date;
 
+    const todayData = new Date();
+    if (this._date === todayData.toLocaleDateString().slice(0, -5)) {
+      this._element.classList.add("date__card-item_active");
+    }
+
     return this._element;
   }
 }

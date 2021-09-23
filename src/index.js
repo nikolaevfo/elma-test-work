@@ -30,11 +30,15 @@ function toGetThisWeekTasksData(firstDay) {
     const thisDayTasks = tasksData.filter((item) => {
       const dateStartTask = new Date(item.planStartDate);
       const dateEndTask = new Date(item.planEndDate);
-
       const dateEndTaskIncrease = new Date(dateEndTask);
+      const todayDay = new Date();
+
       dateEndTaskIncrease.setDate(dateEndTaskIncrease.getDate() + 1);
 
-      return dateStartTask <= thisDayDate && dateEndTaskIncrease >= thisDayDate;
+      return (
+        (dateStartTask <= thisDayDate && dateEndTaskIncrease >= thisDayDate) ||
+        (!item.endDate && thisDayDate <= todayDay && thisDayDate >= dateStartTask)
+      );
     });
 
     thisWeekTasksData.push(thisDayTasks);
@@ -96,6 +100,7 @@ function handlerBacklogFormSubmit(e) {
 }
 
 backlogForm.addEventListener("submit", handlerBacklogFormSubmit);
+
 // Dates ==============================================================================
 const createDateCard = (data) => {
   const dateCard = new DateCard(data, ".date__card-template");

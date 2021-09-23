@@ -104,6 +104,19 @@ export const tasksData = [
     status: 1,
     order: 1,
   },
+  {
+    id: "511e3770-e2f4-47c8-b9af-de91f20476f8",
+    subject: "Отладка",
+    description: "Устранение XSS уязвимостей",
+    creationAuthor: 1,
+    executor: 4,
+    creationDate: "2021-09-20",
+    planStartDate: "2021-09-20",
+    planEndDate: "2021-09-21",
+    endDate: undefined,
+    status: 1,
+    order: 1,
+  },
 ];
 
 // export const openPopupProfileBtn = document.querySelector('.profile__edit-button');

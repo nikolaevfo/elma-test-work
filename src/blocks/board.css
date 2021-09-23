@@ -72,6 +72,10 @@
   font-size: 16px;
 }
 
+.date__card-item_active{
+  background: #eeeeee;
+}
+
 .board__tasks-wrapper {
   width: 100%;
 }
@@ -127,6 +131,10 @@
   list-style: none;
 }
 
+.board__tasks-user-list_active {
+  background: #eeeeee;
+}
+
 .board__tasks-card-item-list {
   width: 100%;
   display: flex;
@@ -158,6 +166,10 @@
 .board__tasks-user-list-item:hover{
   cursor: pointer;
   background: #329832;
+}
+
+.board__tasks-user-list-item_varning{
+  background: #d9534f;
 }
 
 .board__tasks-user-list-item-header{
@@ -199,6 +211,10 @@
   font-size: 12px; 
   text-align: left;
   overflow-wrap: anywhere;
+}
+
+.board__card-dragged_dragenter{
+  background: #329832;
 }
 
 @media (max-width:1919px){

@@ -53,6 +53,9 @@ export default class UsersRows {
     item.addEventListener("drop", (evt) => {
       onDropHandler(evt);
     });
+    item.addEventListener("dragenter ", (e) => {
+      console.log(e.target);
+    });
   }
 
   _generateRow(userData, thisBoardTasksData, firstDay, quantity, onDropHandler) {
@@ -68,9 +71,18 @@ export default class UsersRows {
 
       const thisCardDate = new Date(firstDay);
       thisCardDate.setDate(thisCardDate.getDate() + i);
+      thisCardDate = thisCardDate.toLocaleDateString();
 
-      newCard.id = thisCardDate.toLocaleDateString();
+      newCard.id = thisCardDate;
       this._setEventListeners(newCard, onDropHandler);
+
+      // выделение сегодняшнего дня
+      const todayData = new Date();
+      todayData = todayData.toLocaleDateString();
+
+      if (thisCardDate === todayData) {
+        newCard.classList.add("board__tasks-user-list_active");
+      }
 
       const dayTasks = thisBoardTasksData[i];
 
@@ -79,21 +91,32 @@ export default class UsersRows {
       });
 
       if (thisUserTasks.length > 0) {
-        for (let j = 0; j < thisUserTasks.length; j++) {
+        thisUserTasks.forEach((element) => {
           const newUserTask = this._getUserTaskTemplate();
           newUserTask.querySelector(".board__tasks-user-list-item-header").textContent =
-            thisUserTasks[j].subject;
+            element.subject;
           newUserTask.querySelector(".board__task-submenu-item-description").textContent =
-            thisUserTasks[j].description;
+            element.description;
           newUserTask.querySelector(".board__task-submenu-item-creationDate").textContent =
-            thisUserTasks[j].creationDate;
+            element.creationDate;
           newUserTask.querySelector(".board__task-submenu-item-planStartDate").textContent =
-            thisUserTasks[j].planStartDate;
+            element.planStartDate;
           newUserTask.querySelector(".board__task-submenu-item-planEndDate").textContent =
-            thisUserTasks[j].planEndDate;
+            element.planEndDate;
+
+          // проверка, просрочено ли задание
+          const thisCardDateNewFormat = thisCardDate.split(".").reverse().join("-");
+
+          if (
+            !element.endDate &&
+            element.planEndDate < thisCardDateNewFormat &&
+            thisCardDate <= todayData
+          ) {
+            newUserTask.classList.add("board__tasks-user-list-item_varning");
+          }
 
           newCard.querySelector(".board__tasks-card-item-list").append(newUserTask);
-        }
+        });
       }
 
       rowsList.append(newCard);
