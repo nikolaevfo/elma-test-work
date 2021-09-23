@@ -1,13 +1,23 @@
+import "./index.css";
+
 import BacklogCard from "./components/BacklogCard";
 import BacklogSection from "./components/BacklogSection";
 import DateCard from "./components/DateCard";
 import DateSection from "./components/DateSection";
 import Popup from "./components/Popup";
 import UsersRows from "./components/UsersRows";
-import "./index.css";
 
 import { usersData } from "./utils/constants";
 import { tasksData } from "./utils/constants";
+
+import { backlogForm } from "./utils/constants";
+import { backlogFormInput } from "./utils/constants";
+import { nextWeekButton } from "./utils/constants";
+import { lastWeekButton } from "./utils/constants";
+import { popupConfirmName } from "./utils/constants";
+import { popupConfirmTask } from "./utils/constants";
+import { popupConfirmButtonCancel } from "./utils/constants";
+import { popupConfirmButtonConfirm } from "./utils/constants";
 
 const date = new Date();
 let mondayDate = new Date(date.setDate(date.getDate() + 1 - date.getDay()));
@@ -31,9 +41,9 @@ function toGetThisWeekTasksData(firstDay) {
     const thisDayTasks = tasksData.filter((item) => {
       const dateStartTask = new Date(item.planStartDate);
       const dateEndTask = new Date(item.planEndDate);
-      const dateEndTaskIncrease = new Date(dateEndTask);
       const todayDay = new Date();
 
+      const dateEndTaskIncrease = new Date(dateEndTask);
       dateEndTaskIncrease.setDate(dateEndTaskIncrease.getDate() + 1);
 
       return (
@@ -62,9 +72,6 @@ function toGetRenderedTasksWithoutExecutor() {
   renderedTasksWithoutExecutor = tasksWithoutExecutor;
 }
 toGetRenderedTasksWithoutExecutor();
-
-const backlogForm = document.querySelector(".backlog__form");
-const backlogFormInput = document.querySelector(".backlog__search-input");
 
 function clearBacklogItems() {
   backlogTasksList.clearItems();
@@ -100,8 +107,6 @@ function handlerBacklogFormSubmit(e) {
   renderBacklogItems();
 }
 
-backlogForm.addEventListener("submit", handlerBacklogFormSubmit);
-
 // Dates ==============================================================================
 const createDateCard = (data) => {
   const dateCard = new DateCard(data, ".date__card-template");
@@ -128,12 +133,6 @@ const createBacklogCard = (item) => {
 const backlogTasksList = new BacklogSection((item) => {
   backlogTasksList.addItem(createBacklogCard(item));
 }, ".backlog__tasks-list");
-
-// перезагрузка страницы при изменении размера экрана ==========================================
-// function handleWindowResize() {
-//   window.location.reload();
-// }
-// window.addEventListener("resize", handleWindowResize);
 
 // renderAllItems clearAllItems =================================================================
 function renderAllItems() {
@@ -163,9 +162,6 @@ function clearAllItems() {
 }
 
 // прокручивание недель ========================================================================
-const nextWeekButton = document.querySelector(".board__nav-btn_right");
-const lastWeekButton = document.querySelector(".board__nav-btn_left");
-
 function onNextWeekClick() {
   clearAllItems();
   mondayDate.setDate(mondayDate.getDate() + 7);
@@ -192,9 +188,6 @@ function onPreviousWeekClick() {
   toGetThisWeekTasksData(firstDayBoard);
   renderAllItems();
 }
-
-nextWeekButton.addEventListener("click", onNextWeekClick);
-lastWeekButton.addEventListener("click", onPreviousWeekClick);
 
 // drag and drop ==================================================================================
 let dragTaskId;
@@ -243,17 +236,10 @@ function onDropHandler(event) {
   popupConfirm.open();
 }
 
-// Popup Confirm
+// Popup Confirm ========================================================================================
 const popupConfirm = new Popup(".popup-confirm");
-const popupConfirmName = document.querySelector(".popup__title-name");
-const popupConfirmTask = document.querySelector(".popup__title-task");
 
 popupConfirm.setEventListeners();
-
-const popupConfirmButtonCancel = document.querySelector(".popup__button-cancel");
-popupConfirmButtonCancel.addEventListener("click", () => {
-  popupConfirm.close();
-});
 
 function handlerPopupConfirm() {
   if (dropItem.classList.contains("board__tasks-row-header")) {
@@ -264,7 +250,17 @@ function handlerPopupConfirm() {
   }
 }
 
-const popupConfirmButtonConfirm = document.querySelector(".popup__button-confirm");
+// Listeners ============================================================================================
+backlogForm.addEventListener("submit", handlerBacklogFormSubmit);
+
+nextWeekButton.addEventListener("click", onNextWeekClick);
+
+lastWeekButton.addEventListener("click", onPreviousWeekClick);
+
+popupConfirmButtonCancel.addEventListener("click", () => {
+  popupConfirm.close();
+});
+
 popupConfirmButtonConfirm.addEventListener("click", () => {
   handlerPopupConfirm();
   popupConfirm.close();

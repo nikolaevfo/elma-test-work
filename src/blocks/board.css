@@ -159,17 +159,20 @@
   transition: 0.3s;
 }
 
-.board__tasks-user-list-item:last-child { 
+.board__tasks-user-list-item:last-child {
   border-bottom: none;
 }
 
-.board__tasks-user-list-item:hover{
+.board__tasks-user-list-item:hover {
   cursor: pointer;
   background: #329832;
 }
 
-.board__tasks-user-list-item_varning{
+.board__tasks-user-list-item_varning {
   background: #d9534f;
+}
+.board__tasks-user-list-item_varning:hover {
+  background: #b03f3c;
 }
 
 .board__tasks-user-list-item-header{

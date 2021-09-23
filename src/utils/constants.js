@@ -105,7 +105,7 @@ export const tasksData = [
     order: 1,
   },
   {
-    id: "511e3770-e2f4-47c8-b9af-de91f20476f8",
+    id: "515e3770-e2f4-47c8-b9af-de91f20476f8",
     subject: "Отладка",
     description: "Устранение XSS уязвимостей",
     creationAuthor: 1,
@@ -117,18 +117,26 @@ export const tasksData = [
     status: 1,
     order: 1,
   },
+  {
+    id: "511e3770-e2f4-47c8-b3af-de91f20476f8",
+    subject: "Отладка",
+    description: "Устранение XSS уязвимостей 5",
+    creationAuthor: 1,
+    executor: null,
+    creationDate: "2021-09-19",
+    planStartDate: "2021-09-19",
+    planEndDate: "2021-09-20",
+    endDate: undefined,
+    status: 1,
+    order: 1,
+  },
 ];
 
-// export const openPopupProfileBtn = document.querySelector('.profile__edit-button');
-// export const openPopupCardBtn = document.querySelector('.profile__add-button');
-// export const nameInput = document.querySelector('.popup-profile__text_type_name');
-// export const jobInput = document.querySelector('.popup-profile__text_type_profession');
-// export const forms = document.querySelectorAll('.popup__form');
-// export const formProfileElement = document.querySelector('.popup-profile__form');
-// export const formCardElement = document.querySelector('.popup-card__form');
-// export const profileAvatar = document.querySelector('.profile__avatar');
-// export const profileAvatarBtn = document.querySelector('.profile__avatar-container');
-// export const formAvatarElement = document.querySelector('.popup-avatar__form');
-// export const formAvatarBtnAdd = document.querySelector('.popup-avatar__btn-add');
-// export const formProfileBtnAdd = document.querySelector('.popup-profile__btn-add');
-// export const formCardBtnAdd = document.querySelector('.popup-card__btn-add');
+export const backlogForm = document.querySelector(".backlog__form");
+export const backlogFormInput = document.querySelector(".backlog__search-input");
+export const nextWeekButton = document.querySelector(".board__nav-btn_right");
+export const lastWeekButton = document.querySelector(".board__nav-btn_left");
+export const popupConfirmName = document.querySelector(".popup__title-name");
+export const popupConfirmTask = document.querySelector(".popup__title-task");
+export const popupConfirmButtonCancel = document.querySelector(".popup__button-cancel");
+export const popupConfirmButtonConfirm = document.querySelector(".popup__button-confirm");
