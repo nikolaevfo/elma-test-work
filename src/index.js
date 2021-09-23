@@ -213,10 +213,25 @@ function dropTaskHandler(taskId, author, date) {
   renderAllItems();
 }
 
+function dropAuthorHandler(taskId, author) {
+  tasksData.map((task) => {
+    if (task.id === taskId) {
+      task.executor = parseInt(author, 10);
+    }
+  });
+
+  clearAllItems();
+  renderAllItems();
+}
+
 function onDropHandler(event) {
   const dropItem = event.target;
-  dropAreaDate = dropItem.closest(".board__tasks-user-list").id;
   dropAreaAuthor = dropItem.closest(".board__tasks-row-item").id;
 
-  dropTaskHandler(dragTaskId, dropAreaAuthor, dropAreaDate);
+  if (dropItem.classList.contains("board__tasks-row-header")) {
+    dropAuthorHandler(dragTaskId, dropAreaAuthor);
+  } else {
+    dropAreaDate = dropItem.closest(".board__tasks-user-list").id;
+    dropTaskHandler(dragTaskId, dropAreaAuthor, dropAreaDate);
+  }
 }

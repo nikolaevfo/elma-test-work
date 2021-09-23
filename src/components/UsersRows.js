@@ -60,6 +60,7 @@ export default class UsersRows {
     rowElement.id = userData.id;
     const header = rowElement.querySelector(".board__tasks-row-header");
     header.textContent = userData.firstName + " " + userData.surname;
+    this._setEventListeners(header, onDropHandler);
 
     const rowsList = rowElement.querySelector(".board__tasks-cards-list");
     for (let i = 0; i < quantity; i++) {
