@@ -2,6 +2,7 @@ import BacklogCard from "./components/BacklogCard";
 import BacklogSection from "./components/BacklogSection";
 import DateCard from "./components/DateCard";
 import DateSection from "./components/DateSection";
+import Popup from "./components/Popup";
 import UsersRows from "./components/UsersRows";
 import "./index.css";
 
@@ -199,16 +200,17 @@ lastWeekButton.addEventListener("click", onPreviousWeekClick);
 let dragTaskId;
 let dropAreaAuthor;
 let dropAreaDate;
+let dropItem;
 
 function onDragStartHandler(event) {
   dragTaskId = event.target.id;
 }
 
-function dropTaskHandler(taskId, author, date) {
+function dropTaskHandler() {
   tasksData.map((task) => {
-    if (task.id === taskId) {
-      task.executor = parseInt(author, 10);
-      const dateNewFormat = date.split(".").reverse().join("-");
+    if (task.id === dragTaskId) {
+      task.executor = parseInt(dropAreaAuthor, 10);
+      const dateNewFormat = dropAreaDate.split(".").reverse().join("-");
       task.planStartDate = dateNewFormat;
       task.planEndDate = dateNewFormat;
     }
@@ -218,10 +220,10 @@ function dropTaskHandler(taskId, author, date) {
   renderAllItems();
 }
 
-function dropAuthorHandler(taskId, author) {
+function dropAuthorHandler() {
   tasksData.map((task) => {
-    if (task.id === taskId) {
-      task.executor = parseInt(author, 10);
+    if (task.id === dragTaskId) {
+      task.executor = parseInt(dropAreaAuthor, 10);
     }
   });
 
@@ -230,13 +232,40 @@ function dropAuthorHandler(taskId, author) {
 }
 
 function onDropHandler(event) {
-  const dropItem = event.target;
+  dropItem = event.target;
   dropAreaAuthor = dropItem.closest(".board__tasks-row-item").id;
 
+  console.log(dragTaskId);
+  const user = usersData.find((item) => item.id === Number(dropAreaAuthor));
+  const task = tasksData.find((item) => item.id === dragTaskId);
+  popupConfirmName.textContent = `${user.firstName} ${user.surname}`;
+  popupConfirmTask.textContent = task.subject;
+  popupConfirm.open();
+}
+
+// Popup Confirm
+const popupConfirm = new Popup(".popup-confirm");
+const popupConfirmName = document.querySelector(".popup__title-name");
+const popupConfirmTask = document.querySelector(".popup__title-task");
+
+popupConfirm.setEventListeners();
+
+const popupConfirmButtonCancel = document.querySelector(".popup__button-cancel");
+popupConfirmButtonCancel.addEventListener("click", () => {
+  popupConfirm.close();
+});
+
+function handlerPopupConfirm() {
   if (dropItem.classList.contains("board__tasks-row-header")) {
-    dropAuthorHandler(dragTaskId, dropAreaAuthor);
+    dropAuthorHandler();
   } else {
     dropAreaDate = dropItem.closest(".board__tasks-user-list").id;
-    dropTaskHandler(dragTaskId, dropAreaAuthor, dropAreaDate);
+    dropTaskHandler();
   }
 }
+
+const popupConfirmButtonConfirm = document.querySelector(".popup__button-confirm");
+popupConfirmButtonConfirm.addEventListener("click", () => {
+  handlerPopupConfirm();
+  popupConfirm.close();
+});

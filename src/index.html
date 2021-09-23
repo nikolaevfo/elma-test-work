@@ -31,6 +31,7 @@
         </ul>
       </div>
     </section>
+
     <section class="backlog">
       <h2 class="backlog__title">Backlog</h2>
       <form class="backlog__search-row backlog__form">
@@ -38,6 +39,19 @@
         <button class="backlog__search-button" type="submit"></button>
       </form>
       <ul class="backlog__tasks-list"></ul>
+    </section>
+
+    <section class="popup popup-confirm">
+      <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <h3 class="popup__title">Вы уверены, что хотите поручить задание?</h3>
+        <p class="popup__title-row">Исполнитель: <span class="popup__title-name popup__title-row-span"></span></p>
+        <p class="popup__title-row">Задача: <span class="popup__title-task popup__title-row-span"></span></p>
+        <div class="popup__buttons-row">
+          <button class="popup__button popup__button-confirm" type="button">Да</button>
+          <button class="popup__button popup__button-cancel" type="button">Нет</button>
+        </div>
+      </div>
     </section>
   </div>
 
