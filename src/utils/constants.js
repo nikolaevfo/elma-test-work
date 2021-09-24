@@ -1,3 +1,12 @@
+export const backlogForm = document.querySelector(".backlog__form");
+export const backlogFormInput = document.querySelector(".backlog__search-input");
+export const nextWeekButton = document.querySelector(".board__nav-btn_right");
+export const lastWeekButton = document.querySelector(".board__nav-btn_left");
+export const popupConfirmName = document.querySelector(".popup__title-name");
+export const popupConfirmTask = document.querySelector(".popup__title-task");
+export const popupConfirmButtonCancel = document.querySelector(".popup__button-cancel");
+export const popupConfirmButtonConfirm = document.querySelector(".popup__button-confirm");
+
 export const usersData = [
   {
     id: 1,
@@ -131,12 +140,3 @@ export const tasksData = [
     order: 1,
   },
 ];
-
-export const backlogForm = document.querySelector(".backlog__form");
-export const backlogFormInput = document.querySelector(".backlog__search-input");
-export const nextWeekButton = document.querySelector(".board__nav-btn_right");
-export const lastWeekButton = document.querySelector(".board__nav-btn_left");
-export const popupConfirmName = document.querySelector(".popup__title-name");
-export const popupConfirmTask = document.querySelector(".popup__title-task");
-export const popupConfirmButtonCancel = document.querySelector(".popup__button-cancel");
-export const popupConfirmButtonConfirm = document.querySelector(".popup__button-confirm");
