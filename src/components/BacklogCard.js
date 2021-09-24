@@ -9,14 +9,14 @@ export default class BacklogCard {
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
-      .content.querySelector(".backlog__tasks-item")
+      .content.querySelector('.backlog__tasks-item')
       .cloneNode(true);
 
     return cardElement;
   }
 
   _setEventListeners(onDragStartHandler) {
-    this._element.addEventListener("dragstart", (evt) => {
+    this._element.addEventListener('dragstart', (evt) => {
       onDragStartHandler(evt);
     });
   }
@@ -28,10 +28,11 @@ export default class BacklogCard {
       return item.id === this._task.creationAuthor;
     });
 
-    this._element.querySelector(".backlog__tasks-item-name").textContent =
-      author.firstName + " " + author.surname;
-    this._element.querySelector(".backlog__tasks-item-description").textContent =
-      this._task.description;
+    this._element.querySelector('.backlog__tasks-item-name').textContent =
+      author.firstName + ' ' + author.surname;
+    this._element.querySelector(
+      '.backlog__tasks-item-description'
+    ).textContent = this._task.description;
 
     return this._element;
   }

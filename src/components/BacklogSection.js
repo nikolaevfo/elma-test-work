@@ -1,4 +1,4 @@
-import Section from "./Section";
+import Section from './Section';
 
 export default class BacklogSection extends Section {
   constructor(renderer, containerSelector) {

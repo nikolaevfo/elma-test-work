@@ -8,6 +8,6 @@ export default class Section {
   }
 
   clearItems() {
-    document.querySelector(this._containerSelector).textContent = "";
+    document.querySelector(this._containerSelector).textContent = '';
   }
 }

@@ -8,7 +8,7 @@ export default class DateCard {
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
-      .content.querySelector(".date__card-item")
+      .content.querySelector('.date__card-item')
       .cloneNode(true);
 
     return cardElement;
@@ -19,7 +19,7 @@ export default class DateCard {
 
     const todayData = new Date();
     if (this._date === todayData.toLocaleDateString().slice(0, -5)) {
-      this._element.classList.add("date__card-item_active");
+      this._element.classList.add('date__card-item_active');
     }
 
     return this._element;

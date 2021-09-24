@@ -1,4 +1,4 @@
-import Section from "./Section";
+import Section from './Section';
 
 export default class DateSection extends Section {
   constructor(renderer, containerSelector) {
